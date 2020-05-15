@@ -1,0 +1,167 @@
+<NavigationDrawer>:
+    
+    ScreenManager:
+        id:sm
+        
+        Screen:
+            name:'home'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Plethora"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                Widget:
+        Screen:
+            name:'img'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: " Edit Image"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                ImageLayout1
+        Screen:
+            name:'ocr'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Text Recognise"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                ImageToText:
+
+        Screen:
+            name:'translate'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Translate"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                TransLayout:
+
+
+        Screen:
+            name:'Textformat'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Plethora"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                TEXTFormatLayout:
+
+        Screen:
+            name:'speech'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Speech"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [['home-outline', lambda x: root.back_to_home_screen()]]
+                SpeechLayout:
+        
+        
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            id: content_drawer
+            sm:sm
+
+
+<ContentNavigationDrawer>
+
+    BoxLayout:
+        orientation: 'vertical'
+        FloatLayout:
+            size_hint_y: None
+            height: "200dp"
+            canvas:
+                Color:
+                    rgba: app.theme_cls.primary_color
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            BoxLayout:
+                id: top_box
+                size_hint_y: None
+                height: "200dp"
+                x: root.parent.x
+                pos_hint: {"top": 1}
+                FitImage:
+                    source: "logo.jfif"
+            MDIconButton:
+                icon: "close"
+                x: root.parent.x + dp(10)
+                pos_hint: {"top": 1}
+                on_press: root.parent.set_state()
+            
+                
+                
+        ScrollView:
+            pos_hint: {"top": 1}
+            MDGridLayout:
+                id: box_item
+                cols: 1
+                adaptive_height: True
+                TwoLineListItem:                    
+                    text: "Plethora "
+                    secondary_text: "Version 1.0"
+                OneLineIconListItem:
+                    text:"HOME"
+                    on_press:                        
+                        root.parent.set_state("close")
+                        root.sm.current='home'
+                OneLineIconListItem:
+                    text:"Image Edit"
+                    on_press:
+                        
+                        root.parent.set_state("close")
+                        root.sm.current='img'
+
+                OneLineIconListItem:
+                    text:"Recognise Text"
+                    on_press:                        
+                        root.parent.set_state("close")
+                        root.sm.current='ocr'
+                OneLineIconListItem:
+                    text:"Translate"
+                    on_press:                       
+                        root.parent.set_state("close")
+                        root.sm.current='translate'
+
+                OneLineIconListItem:
+                    text:"Text Format and Analyse"
+                    on_press:                       
+                        root.parent.set_state("close")
+                        root.sm.current='Textformat'
+                        
+                OneLineIconListItem:
+                    text:"Speech Tool"
+                    on_press:                        
+                        root.parent.set_state("close")
+                        root.sm.current='speech'
+                OneLineIconListItem:
+                    text:"Feedback"                    
+                    on_press:                        
+                        root.parent.set_state("close")
+                        root.sm.current='home'
+
+                OneLineIconListItem:
+                    text:"Sign out"                    
+                    on_press:                        
+                        root.parent.set_state("close")
+                        root.sm.current='home'
